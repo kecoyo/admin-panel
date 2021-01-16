@@ -1,8 +1,6 @@
-.env
 .git
 .svn
 .idea
-.vscode
 *.log
 .DS_Store
 /runtime

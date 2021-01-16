@@ -1,5 +1,15 @@
 <?php
 
+
+
+
+
+
+
+
+
+
+
 namespace Composer;
 
 use Composer\Semver\VersionParser;
@@ -14,12 +24,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '6.x-dev',
-    'version' => '6.9999999.9999999.9999999-dev',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => '2ec3ac9e203d49e1e55a027e90002117cf84ea0a',
+    'reference' => 'c109b9de98c7db452bffcf5664d4dd2b46a015ca',
     'name' => 'zoujingli/thinkadmin',
   ),
   'versions' => 
@@ -98,21 +108,21 @@ private static $installed = array (
     ),
     'symfony/options-resolver' => 
     array (
-      'pretty_version' => 'v3.4.45',
-      'version' => '3.4.45.0',
+      'pretty_version' => 'v3.4.47',
+      'version' => '3.4.47.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0edf31d2e34f4adb72dd4d2e4a8aa21f84b943e5',
+      'reference' => 'c7efc97a47b2ebaabc19d5b6c6b50f5c37c92744',
     ),
     'topthink/framework' => 
     array (
-      'pretty_version' => 'v6.0.5',
-      'version' => '6.0.5.0',
+      'pretty_version' => 'v6.0.6',
+      'version' => '6.0.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '85625d984f5c96699dc27d384869f206c3aec1cc',
+      'reference' => 'dd265d9e962da2c033a45190b839d5538770a760',
     ),
     'topthink/think-helper' => 
     array (
@@ -125,21 +135,21 @@ private static $installed = array (
     ),
     'topthink/think-orm' => 
     array (
-      'pretty_version' => 'v2.0.34',
-      'version' => '2.0.34.0',
+      'pretty_version' => 'v2.0.36',
+      'version' => '2.0.36.0',
       'aliases' => 
       array (
       ),
-      'reference' => '57f9b98895b0ff4ae7b7b75e51456fd8cb8fb629',
+      'reference' => 'f48dc09050f25029d41a66bfc9c3c403e4f82024',
     ),
     'topthink/think-template' => 
     array (
-      'pretty_version' => 'v2.0.7',
-      'version' => '2.0.7.0',
+      'pretty_version' => 'v2.0.8',
+      'version' => '2.0.8.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e98bdbb4a4c94b442f17dfceba81e0134d4fbd19',
+      'reference' => 'abfc293f74f9ef5127b5c416310a01fe42e59368',
     ),
     'topthink/think-view' => 
     array (
@@ -152,12 +162,12 @@ private static $installed = array (
     ),
     'zoujingli/ip2region' => 
     array (
-      'pretty_version' => 'v1.0.8',
-      'version' => '1.0.8.0',
+      'pretty_version' => 'v1.0.9',
+      'version' => '1.0.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd6be3ab9da1a1ab7e3cd51c4aa634a34de358ce6',
+      'reference' => 'e48f9122f50dd3b79295e35b4acdd0dcd2608ca8',
     ),
     'zoujingli/think-library' => 
     array (
@@ -167,25 +177,25 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '51051855309a5752c0adb8f8d63129a43fd139ce',
+      'reference' => 'e85fb1701ebad407a3155d0758a84dc01d440679',
     ),
     'zoujingli/thinkadmin' => 
     array (
-      'pretty_version' => '6.x-dev',
-      'version' => '6.9999999.9999999.9999999-dev',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => '2ec3ac9e203d49e1e55a027e90002117cf84ea0a',
+      'reference' => 'c109b9de98c7db452bffcf5664d4dd2b46a015ca',
     ),
     'zoujingli/wechat-developer' => 
     array (
-      'pretty_version' => 'v1.2.26',
-      'version' => '1.2.26.0',
+      'pretty_version' => 'v1.2.27',
+      'version' => '1.2.27.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5ecafcd810627cd9217c3d7f18c7026612418278',
+      'reference' => '94de6626f1c9e3d12f16640c30fb9319b37ff34c',
     ),
   ),
 );

@@ -1,19 +1,17 @@
 {
   "type": "project",
-  "name": "zoujingli/thinkadmin",
+  "name": "kecoyo/turtle-admin",
   "license": "MIT",
-  "homepage": "https://thinkadmin.top",
+  "homepage": "https://github.com/kecoyo/turtle-admin",
   "description": "Application development framework",
   "keywords": [
     "ThinkAdmin",
     "ThinkLibrary"
   ],
-  "authors": [
-    {
-      "name": "Anyon",
-      "email": "zoujingli@qq.com"
-    }
-  ],
+  "authors": [{
+    "name": "kecoyo",
+    "email": "kecoyo@163.com"
+  }],
   "require": {
     "php": ">=7.1.0",
     "ext-gd": "*",

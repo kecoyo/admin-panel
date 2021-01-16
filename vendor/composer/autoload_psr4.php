@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'think\\view\\driver\\' => array($vendorDir . '/topthink/think-view/src'),
     'think\\admin\\' => array($vendorDir . '/zoujingli/think-library/src'),
-    'think\\' => array($vendorDir . '/topthink/framework/src/think', $vendorDir . '/topthink/think-helper/src', $vendorDir . '/topthink/think-orm/src', $vendorDir . '/topthink/think-template/src'),
+    'think\\' => array($vendorDir . '/topthink/framework/src/think', $vendorDir . '/topthink/think-helper/src', $vendorDir . '/topthink/think-template/src', $vendorDir . '/topthink/think-orm/src'),
     'app\\' => array($baseDir . '/app'),
     'WePay\\' => array($vendorDir . '/zoujingli/wechat-developer/WePay'),
     'WeMini\\' => array($vendorDir . '/zoujingli/wechat-developer/WeMini'),
@@ -18,6 +18,7 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
+    'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'League\\Flysystem\\Cached\\' => array($vendorDir . '/league/flysystem-cached-adapter/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Endroid\\QrCode\\' => array($vendorDir . '/endroid/qr-code/src'),
