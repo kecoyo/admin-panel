@@ -1,8 +1,8 @@
 {
   "type": "project",
-  "name": "kecoyo/turtle-admin",
+  "name": "kecoyo/think-admin",
   "license": "MIT",
-  "homepage": "https://github.com/kecoyo/turtle-admin",
+  "homepage": "https://github.com/kecoyo/think-admin",
   "description": "Application development framework",
   "keywords": [
     "ThinkAdmin",
