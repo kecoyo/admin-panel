@@ -3,7 +3,7 @@
 {block name="button"}
 {if isset($type) and $type eq 'all'}
 <!--{if auth("add")}-->
-<button data-modal='{:url("add")}' data-title="添加用户" class='layui-btn layui-btn-sm layui-btn-primary'>添加用户</button>
+<button data-open='{:url("add")}' data-title="添加用户" class='layui-btn layui-btn-sm layui-btn-primary'>添加用户</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
 <a data-confirm="确定要启用该用户吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
@@ -81,14 +81,14 @@
                     <a class="layui-btn layui-btn-sm layui-btn-normal" data-title="设置密码" data-modal='{:url("pass")}?id={$vo.id}'>密 码</a>
                     <!--{/if}-->
                     <!--{if auth("edit")}-->
-                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑用户" data-modal='{:url("edit")}?id={$vo.id}'>编 辑</a>
+                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑用户" data-open='{:url("edit")}?id={$vo.id}'>编 辑</a>
                     <!--{/if}-->
                     <!--{if auth("state") and $vo.status eq 1}-->
                     <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要禁用该禁用账号吗?" data-action="{:url('state')}" data-value="id#{$vo.id};status#0" data-csrf="{:systoken('state')}">禁 用</a>
                     <!--{/if}-->
                     {else}
                     <!--{if auth("edit")}-->
-                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑用户" data-modal='{:url("edit")}?id={$vo.id}'>编 辑</a>
+                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑用户" data-open='{:url("edit")}?id={$vo.id}'>编 辑</a>
                     <!--{/if}-->
                     <!--{if auth("state") and $vo.status eq 0}-->
                     <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要恢复该账号吗？" data-action="{:url('state')}" data-value="id#{$vo.id};status#1" data-csrf="{:systoken('state')}">恢 复</a>

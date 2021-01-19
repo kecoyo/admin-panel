@@ -65,6 +65,7 @@ class User extends Controller
      */
     public function add()
     {
+        $this->title = '添加用户';
         $this->_applyFormToken();
         $this->_form($this->table, 'form');
     }
@@ -78,6 +79,7 @@ class User extends Controller
      */
     public function edit()
     {
+        $this->title = '编辑用户';
         $this->_applyFormToken();
         $this->_form($this->table, 'form');
     }

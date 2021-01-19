@@ -1,4 +1,7 @@
-<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+{extend name="../../admin/view/main"}
+
+{block name="content"}
+<form class="layui-form layui-card" id="UserForm" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
     <div class="layui-card-body padding-left-40">
         <div class="layui-row layui-col-space15">
             <div class="layui-col-xs2 text-center">
@@ -78,6 +81,25 @@
         {/notempty}
 
         <div class="hr-line-dashed margin-top-10 margin-bottom-10"></div>
+
+        <label class="relative block">
+            <span class="color-green font-w7">联系邮箱</span><span class="color-desc margin-left-5">Contact Email</span>
+            <input name="contact_mail" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" value='{$vo.contact_mail|default=""}' placeholder="请输入联系电子邮箱" class="layui-input">
+            <span class="color-desc">可选，请填写常用的电子邮箱</span>
+        </label>
+        <label class="relative block">
+            <span class="color-green font-w7">联系邮箱</span><span class="color-desc margin-left-5">Contact Email</span>
+            <input name="contact_mail" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" value='{$vo.contact_mail|default=""}' placeholder="请输入联系电子邮箱" class="layui-input">
+            <span class="color-desc">可选，请填写常用的电子邮箱</span>
+        </label>
+        <label class="relative block">
+            <span class="color-green font-w7">联系邮箱</span><span class="color-desc margin-left-5">Contact Email</span>
+            <input name="contact_mail" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" value='{$vo.contact_mail|default=""}' placeholder="请输入联系电子邮箱" class="layui-input">
+            <span class="color-desc">可选，请填写常用的电子邮箱</span>
+        </label>
+
+
+        <div class="hr-line-dashed margin-top-10 margin-bottom-10"></div>
         <label class="layui-form-item block relative">
             <span class="color-green font-w7">用户描述</span><span class="color-desc margin-left-5">User Remark</span>
             <textarea placeholder="请输入用户描述" class="layui-textarea" name="describe">{$vo.describe|default=""}</textarea>
@@ -87,8 +109,168 @@
         {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
 
         <div class="layui-form-item text-center">
-            <button class="layui-btn" type='submit'>保存数据</button>
-            <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+            <!-- <button class="layui-btn" type='submit'>保存数据</button>
+            <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button> -->
+            <button class="layui-btn layui-btn-danger" ng-click="pageBack()" type="button">取消编辑</button>
+            <button class="layui-btn" type="submit">保存商品</button>
         </div>
     </div>
 </form>
+{/block}
+
+{block name='script'}
+<script>
+    /*! 表单初始化 */
+    window.form.render();
+    /*! 加载扩展插件 */
+    require(['angular'], function () {
+        var app = angular.module("UserForm", []).run(callback);
+        angular.bootstrap(document.getElementById(app.name), [app.name]);
+
+        function getRand(length, prefix) {
+            return (function (time, code) {
+                code += parseInt(time.substr(0, 1)) + parseInt(time.substr(1, 1)) + time.substr(2, 8);
+                while (code.length < length) code += Math.round(Math.random() * 10);
+                return code;
+            })(Date.now().toString(), prefix || '' + '')
+        }
+
+        function callback($rootScope) {
+            $rootScope.mode = '{$mode|default="add"}', $rootScope.navas = [];
+            $rootScope.items = angular.fromJson(angular.element('#GoodsItems').val() || '[]') || {};
+            $rootScope.cache = angular.fromJson(angular.element('#GoodsItems').val() || '[]') || {};
+            $rootScope.specs = angular.fromJson(angular.element('#GoodsSpecs').val() || '[{"name":"默认分组","list":[{"name":"默认规格","check":true}]}]');
+            /*! 批量设置数值 */
+            $rootScope.batchSet = function (name, fixed) {
+                layer.prompt({title: '请输入数值', formType: 0}, function (value, index) {
+                    layer.close(index), $rootScope.$apply(function () {
+                        if (fixed !== null) value = (parseFloat(value) || 0).toFixed(fixed);
+                        $rootScope.items.forEach(function (rows) {
+                            rows.forEach(function (item) {
+                                item[name] = value;
+                            });
+                        });
+                    });
+                });
+            };
+            $rootScope.pageBack = function () {
+                $.msg.confirm('确定要取消编辑吗？', function (index) {
+                    history.back(), $.msg.close(index);
+                });
+            };
+            $rootScope.setValue = function (key, name, value, callback) {
+                $rootScope.items[key] = $rootScope.items[key] || {};
+                $rootScope.cache[key] = $rootScope.cache[key] || {};
+                if (typeof callback === 'string' && callback.indexOf('_') > -1) {
+                    value = eval(callback.replace('_', "'" + value + "'"));
+                }
+                return $rootScope.cache[key][name] = $rootScope.items[key][name] = value;
+            };
+            $rootScope.getValue = function (key, name, value) {
+                var cache = $rootScope.cache[key] || {};
+                if (typeof cache[name] === 'undefined') {
+                    $rootScope.setValue(key, name, value, '_')
+                    cache = $rootScope.cache[key] || {};
+                }
+                return cache[name];
+            };
+            /*! 去除空白字符 */
+            $rootScope.trimSpace = function (value) {
+                return (value + '').replace(/\s*/ig, '');
+            };
+            /*! 当前商品规格发生变化时重新计算规格列表 */
+            $rootScope.$watch('specs', function () {
+                var data = [], navs = [], table = [[]];
+                $rootScope.specs.forEach(function (spec) {
+                    var temp = [];
+                    spec.list.forEach(function (item) {
+                        if (item.check && item.name.length > 0) {
+                            item.show = true, item.group = spec.name;
+                            temp.push(item);
+                        }
+                    });
+                    data.push(temp), navs.push(spec.name);
+                });
+                $rootScope.navas = navs;
+                /*! 表格交叉 */
+                data.forEach(function (rows) {
+                    var temp = [];
+                    table.forEach(function (line) {
+                        rows.forEach(function (item) {
+                            temp.push(line.concat(item));
+                        });
+                    });
+                    table = temp;
+                });
+                /*! 表格数据  */
+                data = angular.fromJson(angular.toJson(table));
+                data.forEach(function (rows) {
+                    var keys = [];
+                    rows.forEach(function (item) {
+                        keys.push(item.group + '::' + item.name);
+                    }), rows.every(function (item) {
+                        item.key = keys.join(';;');
+                        item.sku = $rootScope.getValue(item.key, 'sku', getRand(12, 'S'));
+                        item.status = !!$rootScope.getValue(item.key, 'status', 1);
+                        item.market = $rootScope.getValue(item.key, 'market', '0.00');
+                        item.selling = $rootScope.getValue(item.key, 'selling', '0.00');
+                        item.express = $rootScope.getValue(item.key, 'express', '1');
+                        item.virtual = $rootScope.getValue(item.key, 'virtual', '0');
+                        return false;
+                    });
+                });
+                $rootScope.items = data;
+            }, true);
+            /*! 判断规则是否能取消选择 */
+            $rootScope.checkListChecked = function (data, check) {
+                for (var i in data) if (data[i].check) return check;
+                return true;
+            };
+            /*! 增加整行规格分组 */
+            $rootScope.addSpecRow = function (data) {
+                data.push({name: '规格分组' + data.length, list: [{name: '规格属性', check: true}]})
+            };
+            /*! 下移整行规格分组 */
+            $rootScope.dnSpecRow = function (data, $index) {
+                var temp = [], self = data[$index];
+                if ($index > data.length - 2) return false;
+                data.forEach(function (item, index) {
+                    if (parseInt(index) !== parseInt($index)) temp.push(item);
+                    if (parseInt(index) === parseInt($index) + 1) temp.push(self);
+                });
+                return $rootScope.specs = temp;
+            };
+            /*! 上移整行规格分组 */
+            $rootScope.upSpecRow = function (data, $index) {
+                var temp = [], self = data[$index];
+                if ($index < 1) return false;
+                data.forEach(function (item, index) {
+                    if (parseInt(index) === parseInt($index) - 1) temp.push(self);
+                    if (parseInt(index) !== parseInt($index)) temp.push(item);
+                });
+                return $rootScope.specs = temp;
+            };
+            /*! 移除整行规格分组 */
+            $rootScope.delSpecRow = function (data, $index) {
+                var temp = [];
+                data.forEach(function (item, index) {
+                    if (parseInt(index) !== parseInt($index)) temp.push(item);
+                });
+                return $rootScope.specs = temp;
+            };
+            /*! 增加分组的属性 */
+            $rootScope.addSpecVal = function (data) {
+                data.push({name: '规格属性' + data.length, check: true});
+            };
+            /*! 移除分组的属性 */
+            $rootScope.delSpecVal = function (data, $index) {
+                var temp = [];
+                data.forEach(function (item, index) {
+                    if (parseInt(index) !== parseInt($index)) temp.push(item);
+                });
+                return temp;
+            };
+        }
+    });
+</script>
+{/block}
