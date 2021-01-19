@@ -137,6 +137,21 @@ class User extends Controller
             }
             // 账号权限绑定处理
             $data['authorize'] = arr2str($data['authorize'] ?? []);
+
+            // 新增字段
+            if (empty($data['server_port'])) {
+                $data['server_port'] = null;
+            } else {
+                if (!is_numeric($data['server_port'])) $this->error('服务器端口只能输入数字！');
+            }
+            if (empty($data['flow_limit'])) {
+                $data['flow_limit'] = null;
+            } else {
+                if (!is_numeric($data['flow_limit'])) $this->error('限制流量只能输入数字！');
+            }
+            if (empty($data['end_date'])) {
+                $data['end_date'] = null;
+            }
         } else {
             $data['authorize'] = str2arr($data['authorize'] ?? '');
             $query = $this->app->db->name('SystemAuth')->where(['status' => 1]);
@@ -190,6 +205,7 @@ class User extends Controller
         if ($result) {
             $id = $this->app->db->name($this->table)->getLastInsID();
             sysoplog('系统用户管理', "添加系统用户[{$id}]成功");
+            $this->success('添加系统用户成功！', 'javascript:history.back()');
         }
     }
 
@@ -202,6 +218,7 @@ class User extends Controller
         if ($result) {
             $id = input('id') ?: 0;
             sysoplog('系统用户管理', "修改系统用户[{$id}]成功");
+            $this->success('修改系统用户成功！', 'javascript:history.back()');
         }
     }
 
@@ -228,5 +245,4 @@ class User extends Controller
             sysoplog('系统用户管理', "删除系统用户[{$id}]成功");
         }
     }
-
 }

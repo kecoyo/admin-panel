@@ -1,20 +1,20 @@
 <?php
 
-namespace app\data\controller;
+namespace app\user\controller;
 
 use think\admin\Controller;
 use think\admin\storage\LocalStorage;
 
 /**
  * 用户配置
- * Class Config
- * @package app\data\controller
+ * Class User
+ * @package app\user\controller
  */
 class User extends Controller
 {
 
     /**
-     * 用户信息
+     * 服务器配置
      * @auth true
      * @menu true
      * @throws \think\admin\Exception
@@ -22,10 +22,10 @@ class User extends Controller
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
      */
-    public function index()
+    public function server()
     {
         if ($this->request->isGet()) {
-            $this->title = '用户信息';
+            $this->title = '服务器配置';
             $local = LocalStorage::instance();
             $this->mch_ssl_cer = sysconf('wechat.mch_ssl_cer');
             $this->mch_ssl_key = sysconf('wechat.mch_ssl_key');
