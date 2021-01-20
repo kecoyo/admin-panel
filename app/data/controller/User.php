@@ -1,14 +1,14 @@
 <?php
 
-namespace app\user\controller;
+namespace app\data\controller;
 
 use think\admin\Controller;
 use think\admin\storage\LocalStorage;
 
 /**
- * 用户配置
+ * 用户信息
  * Class User
- * @package app\user\controller
+ * @package app\data\controller
  */
 class User extends Controller
 {
@@ -26,15 +26,8 @@ class User extends Controller
     {
         if ($this->request->isGet()) {
             $this->title = '服务器配置';
-            $local = LocalStorage::instance();
-            $this->mch_ssl_cer = sysconf('wechat.mch_ssl_cer');
-            $this->mch_ssl_key = sysconf('wechat.mch_ssl_key');
-            $this->mch_ssl_p12 = sysconf('wechat.mch_ssl_p12');
-            if (!$local->has($this->mch_ssl_cer, true)) $this->mch_ssl_cer = '';
-            if (!$local->has($this->mch_ssl_key, true)) $this->mch_ssl_key = '';
-            if (!$local->has($this->mch_ssl_p12, true)) $this->mch_ssl_p12 = '';
-
-            $this->thrNotify = 'https://v6.thinkadmin.top/wechat/api.push';
+            $this->encryption_mode = $this->app->db->name('DataEncryptionMode')->where(['id' => session('user.encryption_mode')])->find();
+            echo '<pre>'.print_r($this->encryption_mode,true).'</pre>';
             $this->fetch();
         } else {
             $this->error('抱歉，数据提交地址错误！');

@@ -1,0 +1,45 @@
+{extend name="../../admin/view/main"}
+
+{block name="content"}
+
+<div class="layui-card padding-20 shadow">
+    <div class="layui-card-header notselect">
+        <b>配置参数</b><span class="color-desc font-s12 padding-left-5">Configuration Parameter</span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <span class="color-green font-w7">服务器IP</span><span class="margin-left-5 color-desc">Server IP</span>
+            <label class="relative block">
+                <input readonly value="{:session('user.server_port')}" class="layui-input layui-bg-gray">
+                <a data-copy="{:session('user.server_port')}" class="fa fa-copy input-right-icon"></a>
+            </label>
+            <div class="help-block">网站名称及网站图标，将显示在浏览器的标签上。</div>
+        </div>
+        <div class="layui-form-item">
+            <span class="color-green font-w7">服务器端口</span><span class="margin-left-5 color-desc">Server Port</span>
+            <label class="relative block">
+                <input readonly value="{:session('user.server_port')}" class="layui-input layui-bg-gray">
+                <a data-copy="{:session('user.server_port')}" class="fa fa-copy input-right-icon"></a>
+            </label>
+            <div class="help-block">管理程序名称，将显示在后台左上角标题。</div>
+        </div>
+        <div class="layui-form-item">
+            <span class="color-green font-w7">服务器密码</span><span class="margin-left-5 color-desc">Server Password</span>
+            <label class="relative block">
+                <input readonly value="{:session('user.server_pwd')}" class="layui-input layui-bg-gray">
+                <a data-copy="{:session('user.server_pwd')}" class="fa fa-copy input-right-icon"></a>
+            </label>
+            <div class="help-block">管理程序版本，将显示在后台左上角标题。</div>
+        </div>
+        <div class="layui-form-item">
+            <span class="color-green font-w7">加密方式</span><span class="margin-left-5 color-desc">Encryption Mode</span>
+            <label class="relative block">
+                <input readonly value="{$encryption_mode['name']|default='-'}" class="layui-input layui-bg-gray">
+                <a data-copy="{$encryption_mode['name']|default='-'}" class="fa fa-copy input-right-icon"></a>
+            </label>
+            <p class="help-block">公网备案号，可以在<a target="_blank" href="http://beian.miit.gov.cn">备案管理中心</a>查询获取，将在登录页面下面显示。</p>
+        </div>
+    </div>
+</div>
+{/block}
+
