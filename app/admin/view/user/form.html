@@ -81,6 +81,7 @@
             </div>
             {/notempty}
 
+            {if session('user.username') eq 'admin'}
             <div class="hr-line-dashed margin-top-10 margin-bottom-10"></div>
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-xs4">
@@ -109,6 +110,7 @@
                             <option value="{$v.id}">{$v.name} ( {$v.id} )</option>
                             {/if}{/foreach}
                         </select>
+
                     </label>
                 </div>
             </div>
@@ -132,7 +134,7 @@
 
                 </div>
             </div>
-
+            {/if}
 
             <div class="hr-line-dashed margin-top-10 margin-bottom-10"></div>
             <label class="layui-form-item block relative">

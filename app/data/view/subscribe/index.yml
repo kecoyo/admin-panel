@@ -1,0 +1,20 @@
+{block name="content"}
+---
+port: 8888
+socks-port: 8889
+mixed-port: 8899
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:6170
+proxies:
+{foreach $servers as $k=>$v}
+  - name: "ss"
+    type: ss
+    server: "{$v.name}"
+    port: "{$user.server_port}"
+    cipher: "{$user.encryption_mode}"
+    password: "{$user.server_pwd}"
+    udp: true
+{/foreach}
+{/block}

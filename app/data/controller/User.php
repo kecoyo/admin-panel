@@ -3,6 +3,7 @@
 namespace app\data\controller;
 
 use think\admin\Controller;
+use think\admin\extend\CodeExtend;
 use think\admin\storage\LocalStorage;
 
 /**
@@ -27,11 +28,15 @@ class User extends Controller
         if ($this->request->isGet()) {
             $this->title = '服务器配置';
             $this->encryption_mode = $this->app->db->name('DataEncryptionMode')->where(['id' => session('user.encryption_mode')])->find();
-            echo '<pre>'.print_r($this->encryption_mode,true).'</pre>';
+
+            $this->subscribe_url = sysuri('data/subscribe/' . session('user.uuid'), [
+                'protocols' => 'ss',
+                'list' => 'clash'
+            ], false, true);
+
             $this->fetch();
         } else {
             $this->error('抱歉，数据提交地址错误！');
         }
     }
-
 }

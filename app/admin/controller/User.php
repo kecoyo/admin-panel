@@ -16,6 +16,7 @@
 namespace app\admin\controller;
 
 use think\admin\Controller;
+use think\admin\extend\CodeExtend;
 
 /**
  * 用户管理
@@ -134,6 +135,8 @@ class User extends Controller
                 }
                 // 新添加的用户密码与账号相同
                 $data['password'] = md5($data['username']);
+                // 初始uuid
+                $data['uuid'] = CodeExtend::random(12, 3);
             }
             // 账号权限绑定处理
             $data['authorize'] = arr2str($data['authorize'] ?? []);
