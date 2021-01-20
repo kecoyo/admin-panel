@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 20/01/2021 10:56:57
+ Date: 20/01/2021 14:13:08
 */
 
 SET NAMES utf8mb4;
@@ -193,7 +193,7 @@ INSERT INTO `system_menu` VALUES (27, 4, '系统任务管理', 'layui-icon layui
 INSERT INTO `system_menu` VALUES (49, 4, '系统日志管理', 'layui-icon layui-icon-form', '', 'admin/oplog/index', '', '_self', 2, 1, '2019-02-18 12:56:56');
 INSERT INTO `system_menu` VALUES (67, 0, '控制台', '', '', '#', '', '_self', 300, 1, '2020-07-13 06:51:46');
 INSERT INTO `system_menu` VALUES (68, 2, '数据管理', '', '', '#', '', '_self', 0, 1, '2020-07-13 06:51:54');
-INSERT INTO `system_menu` VALUES (85, 88, '服务器配置', 'fa fa-send', 'user/user/server', 'user/user/server', '', '_self', 20, 1, '2020-09-22 16:00:10');
+INSERT INTO `system_menu` VALUES (85, 88, '服务器配置', 'fa fa-send', 'data/user/server', 'data/user/server', '', '_self', 20, 1, '2020-09-22 16:00:10');
 INSERT INTO `system_menu` VALUES (86, 68, '服务器管理', 'fa fa-server', 'data/server/index', 'data/server/index', '', '_self', 10, 1, '2020-09-22 16:12:44');
 INSERT INTO `system_menu` VALUES (88, 67, '我的配置', '', '', '#', '', '_self', 0, 1, '2021-01-20 00:07:36');
 INSERT INTO `system_menu` VALUES (89, 68, '加密方式管理', 'fa fa-key', 'data/encryption_mode/index', 'data/encryption_mode/index', '', '_self', 0, 1, '2021-01-20 00:22:09');
@@ -216,6 +216,15 @@ CREATE TABLE `system_oplog`  (
 -- ----------------------------
 -- Records of system_oplog
 -- ----------------------------
+INSERT INTO `system_oplog` VALUES (77, 'admin/menu/edit', '172.24.0.1', '系统菜单管理', '修改系统菜单[85]成功', 'admin', '2021-01-20 11:05:35');
+INSERT INTO `system_oplog` VALUES (78, 'admin/user/edit', '172.24.0.1', '用户管理', '修改系统用户[10000]成功', 'admin', '2021-01-20 11:44:53');
+INSERT INTO `system_oplog` VALUES (79, 'admin/login/index', '172.24.0.1', '系统用户登录', '登录系统后台成功', 'admin', '2021-01-20 11:47:57');
+INSERT INTO `system_oplog` VALUES (80, 'admin/login/index', '172.24.0.1', '系统用户登录', '登录系统后台成功', 'admin', '2021-01-20 11:48:16');
+INSERT INTO `system_oplog` VALUES (81, 'admin/login/index', '172.24.0.1', '系统用户登录', '登录系统后台成功', 'admin', '2021-01-20 11:48:57');
+INSERT INTO `system_oplog` VALUES (82, 'admin/login/index', '172.25.0.1', '系统用户登录', '登录系统后台成功', 'admin', '2021-01-20 13:57:43');
+INSERT INTO `system_oplog` VALUES (83, 'admin/user/edit', '172.25.0.1', '用户管理', '修改系统用户[10000]成功', 'admin', '2021-01-20 14:08:26');
+INSERT INTO `system_oplog` VALUES (84, 'admin/user/edit', '172.25.0.1', '用户管理', '修改系统用户[10000]成功', 'admin', '2021-01-20 14:09:30');
+INSERT INTO `system_oplog` VALUES (85, 'admin/user/edit', '172.25.0.1', '用户管理', '修改系统用户[10000]成功', 'admin', '2021-01-20 14:10:31');
 
 -- ----------------------------
 -- Table structure for system_queue
@@ -287,7 +296,7 @@ CREATE TABLE `system_user`  (
 -- ----------------------------
 -- Records of system_user
 -- ----------------------------
-INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', 'http://localhost/upload/56/0d71e775fb29b354c939d974f5394b.jpg', ',,', '', '', '', '172.24.0.1', '2021-01-20 10:13:25', 64, '', 1, 0, 0, '2015-11-13 15:14:22', 0, '', '', 0, NULL, NULL);
+INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', 'http://localhost/upload/56/0d71e775fb29b354c939d974f5394b.jpg', ',,', '', '', '', '172.25.0.1', '2021-01-20 13:57:43', 68, '', 1, 0, 0, '2015-11-13 15:14:22', 8000, '12345678', '', 100000, '2021-01-31 00:00:00', NULL);
 INSERT INTO `system_user` VALUES (10001, 'yangkk', '2d0fee4f452c0bcee0905b8b9e1d66f6', '杨可可', 'http://localhost/upload/ab/8a280d31fdcc5eae5c73a3a55c751f.jpg', ',1,', '', 'kecoyo@163.com', '15901097191', '', '', 0, '', 1, 0, 0, '2021-01-19 12:41:45', 0, '', '', 0, NULL, NULL);
 INSERT INTO `system_user` VALUES (10002, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test', '', ',,', '', '', '', '', '', 0, '', 1, 0, 0, '2021-01-19 12:52:35', 0, '', '', 0, '2021-01-19 12:52:35', '');
 INSERT INTO `system_user` VALUES (10003, 'kecoyo@163.com', '7619c94232af48ce677257b85e17cb1f', 'kecoyo@163.com', '', ',,', '', '', '', '', '', 0, '', 1, 0, 0, '2021-01-19 21:26:26', 4000, '123456', 'qeqwe', 1234000, '2021-01-31 00:00:00', '');
