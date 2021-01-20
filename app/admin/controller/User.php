@@ -18,7 +18,7 @@ namespace app\admin\controller;
 use think\admin\Controller;
 
 /**
- * 系统用户管理
+ * 用户管理
  * Class User
  * @package app\admin\controller
  */
@@ -32,7 +32,7 @@ class User extends Controller
     private $table = 'SystemUser';
 
     /**
-     * 系统用户管理
+     * 用户管理
      * @auth true
      * @menu true
      * @throws \think\db\exception\DataNotFoundException
@@ -41,7 +41,7 @@ class User extends Controller
      */
     public function index()
     {
-        $this->title = '系统用户管理';
+        $this->title = '用户管理';
         $query = $this->_query($this->table);
         $query->equal('status')->dateBetween('login_at,create_at');
         $query->like('username,contact_phone#phone,contact_mail#mail');
@@ -105,7 +105,7 @@ class User extends Controller
                 'repassword.confirm:password' => '两次输入的密码不一致！',
             ]);
             if (data_save($this->table, ['id' => $data['id'], 'password' => md5($data['password'])], 'id')) {
-                sysoplog('系统用户管理', "修改用户[{$data['id']}]密码成功");
+                sysoplog('用户管理', "修改用户[{$data['id']}]密码成功");
                 $this->success('密码修改成功，请使用新密码登录！', '');
             } else {
                 $this->error('密码修改失败，请稍候再试！');
@@ -156,6 +156,8 @@ class User extends Controller
             $data['authorize'] = str2arr($data['authorize'] ?? '');
             $query = $this->app->db->name('SystemAuth')->where(['status' => 1]);
             $this->authorizes = $query->order('sort desc,id desc')->select()->toArray();
+            $query = $this->app->db->name('DataEncryptionMode')->where(['is_deleted' => 0, 'status' => 1]);
+            $this->encryption_modes = $query->order('sort desc,id desc')->select()->toArray();
         }
     }
 
@@ -204,7 +206,7 @@ class User extends Controller
     {
         if ($result) {
             $id = $this->app->db->name($this->table)->getLastInsID();
-            sysoplog('系统用户管理', "添加系统用户[{$id}]成功");
+            sysoplog('用户管理', "添加系统用户[{$id}]成功");
             $this->success('添加系统用户成功！', 'javascript:history.back()');
         }
     }
@@ -217,7 +219,7 @@ class User extends Controller
     {
         if ($result) {
             $id = input('id') ?: 0;
-            sysoplog('系统用户管理', "修改系统用户[{$id}]成功");
+            sysoplog('用户管理', "修改系统用户[{$id}]成功");
             $this->success('修改系统用户成功！', 'javascript:history.back()');
         }
     }
@@ -230,7 +232,7 @@ class User extends Controller
     {
         if ($result) {
             [$id, $state] = [input('id'), input('status')];
-            sysoplog('系统用户管理', ($state ? '激活' : '禁用') . "系统用户[{$id}]成功");
+            sysoplog('用户管理', ($state ? '激活' : '禁用') . "系统用户[{$id}]成功");
         }
     }
 
@@ -242,7 +244,7 @@ class User extends Controller
     {
         if ($result) {
             $id = input('id') ?: 0;
-            sysoplog('系统用户管理', "删除系统用户[{$id}]成功");
+            sysoplog('用户管理', "删除系统用户[{$id}]成功");
         }
     }
 }
